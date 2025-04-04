@@ -24,6 +24,7 @@ urlpatterns = [
     path('callback/', google_login_callback, name='callback'),
     path('auth/google/validate_token/', validate_google_token, name='validate_token'),
 
+    path('', include('items.urls'))
     # path('auth/social/', include('allauth.socialaccount.urls')),  # Social account URLs
     # path('auth/google/', include('allauth.socialaccount.providers.google.urls')), 
 ]

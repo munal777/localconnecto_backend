@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import ItemCategory, ItemImage, Items
 
-# Register your models here.
+
+admin.site.register(ItemCategory)
+admin.site.register(ItemImage)
+admin.site.register(Items)

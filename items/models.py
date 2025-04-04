@@ -17,7 +17,7 @@ class ItemCategory(models.Model):
 
 class Items(models.Model):
     LISTING_TYPE_CHOCIES = [
-        ('buy', 'Buy'),
+        ('sell', 'Sell'),
         ('free', 'Free'),
     ]
 
@@ -25,10 +25,11 @@ class Items(models.Model):
     category = models.ForeignKey(ItemCategory, on_delete= models.CASCADE, related_name='items')
     title = models.CharField(max_length=55)
     description = models.TextField(blank=True, null=True)
-    posted_date = models.DateField(auto_now_add=True)
-    listing_type = models.CharField(max_length=5, choices=LISTING_TYPE_CHOCIES, default='buy')
+    posted_date = models.DateTimeField(auto_now_add=True)
+    listing_type = models.CharField(max_length=5, choices=LISTING_TYPE_CHOCIES, default='sell')
     price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     location = models.CharField(max_length=50)
+    condition = models.CharField(max_length=50, blank=True, null=True)
     status = models.CharField(max_length=10, choices=[('available', 'Available'), ('booked', 'Booked')], default='available')
 
     class Meta:
@@ -57,7 +58,7 @@ class Items(models.Model):
 
 class ItemImage(models.Model):
     item = models.ForeignKey(Items, on_delete=models.CASCADE, related_name='images')
-    image = CloudinaryField('image', folder = lambda instance: f'accounts/{instance.user.id}/item_images')
+    image = CloudinaryField('image', folder = lambda instance: f'accounts/{instance.item.user.id}/item_images')
     image_public_id = models.CharField(max_length=255, blank=True, null=True)
     order = models.PositiveSmallIntegerField(default=0)
     
