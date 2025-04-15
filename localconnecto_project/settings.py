@@ -71,7 +71,7 @@ MIDDLEWARE = [
 ]
 
 
-ROOT_URLCONF = 'users.urls'
+ROOT_URLCONF = 'localconnecto_project.urls'
 
 TEMPLATES = [
     {
@@ -91,7 +91,7 @@ TEMPLATES = [
 
 
 
-WSGI_APPLICATION = 'users.wsgi.application'
+WSGI_APPLICATION = 'localconnecto_project.wsgi.application'
 
 
 # Database
